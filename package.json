@@ -1,0 +1,12 @@
+
+{
+"name": "Venter",
+"version": "1.0.0",
+"description": "A bot that does stuff.",
+"author": "Biagio Santoro",
+"license": "MIT",
+"main": "main.js",
+"engines": {
+    "node": "12.x"
+  }
+}
