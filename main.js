@@ -7,7 +7,7 @@ const ventrevealer = new Discord.WebhookClient(config.vent_reveal_id, config.ven
 const games = ['Pineapple should not go on pizza.','Use +help to get help.','+help me.','Robots are forever on life support.','I no longer find Cards Against Humanity funny.','Vine was never funny.','I committed tax fraud for respect to yoshi.', 'Waluigi is the best.', 'biagios.github.io/porn', 'gradientforest.com', 'iconic.']
 setInterval(function () {
   const rangame = games[Math.floor(Math.random() * games.length)]
-  client.user.setActivity(rangame)
+  client.user.setActivity("Use !vent to send vents")
 }, 60000 * 5)
 client.on('warn', console.warn)
 client.on('error', console.error)
