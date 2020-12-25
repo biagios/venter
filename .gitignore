@@ -3,5 +3,4 @@ config.json
 bans.js
 config.js
 /data/
-node_modules/
 setup.js
