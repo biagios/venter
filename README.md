@@ -1,28 +1,6 @@
 <h1 align="center">Welcome to Venter</h1>
 <p align="center"> A bot used to send private anonymous messages via webhooks to the #vents channel on the Venter server.</p>
-<p align="center">
-  <a href="https://top.gg/bot/300955174225051650" >
-    <img src="https://top.gg/api/widget/status/300955174225051650.svg" alt="Pal"/>
-  </a>
 
-  <a href="https://discordapp.com/oauth2/authorize?&client_id=300955174225051650&scope=bot&permissions=1007021143">
-      <img src="https://img.shields.io/badge/Discord-Add%20Bot-7289DA.svg"/>
-  </a>
-
-  <a href="https://github.com/MiddayClouds/pal/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="https://github.com/MiddayClouds/pal/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/MiddayClouds/pal" />
-  </a>
-  <a href="https://app.fossa.com/projects/git%2Bgithub.com%2FMiddayClouds%2Fpal?ref=badge_shield" alt="FOSSA Status">
-  	<img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FMiddayClouds%2Fpal.svg?type=shield"/>
-  </a>
-  <a href="https://codeclimate.com/github/MiddayClouds/pal/maintainability">
-    <img src="https://api.codeclimate.com/v1/badges/92b81fccccb2faa9aaac/maintainability"/>
-  </a>
-
-</p>
 
 <p align="center">This is Venter, a discord bot that runs off <a href="https://github.com/hydrabolt/discord.js/">discord.js</a> and is based off <a href="https://github.com/AnIdiotsGuide/guidebot">GuideBot</a> and <a href="https://github.com/MiddayClouds/pal">Pal</a></p>
 
