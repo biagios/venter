@@ -32,7 +32,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   ventSender.send(ventMessage + ' - Anonymous')
 
   // Send the message to the webhook that posts it to #vents-log
-  ventRevealer.send("```asciidoc\nTIMESTAMP::" + timestamp +"\nAUTHOR:: " + message.author.username + message.author.tag + " (" + message.author.id + ")\n" + "MESSAGE:: "+ ventMessage +"```")
+  ventRevealer.send("```asciidoc\nTIMESTAMP::" + timestamp +"\nAUTHOR:: " + message.author.tag + " (" + message.author.id + ")\n" + "MESSAGE:: "+ ventMessage +"```")
 
 };
 
