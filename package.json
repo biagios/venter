@@ -1,12 +1,44 @@
-
 {
-"name": "Venter",
-"version": "1.0.0",
-"description": "A bot that does stuff.",
-"author": "Biagio Santoro",
-"license": "MIT",
-"main": "main.js",
-"engines": {
-    "node": "12.x"
+  "name": "venter",
+  "version": "1.0.0",
+  "description": "A bot used to send private anonymous messages via webhooks to the #vents channel on the Venter server.",
+  "main": "bot.js",
+  "keywords": [
+    "discord",
+    "discordjs",
+    "discord-js",
+    "discord-bot",
+    "discord-js-bot"
+  ],
+  "scripts": {
+    "start": "node bot.js",
+    "postinstall": "node setup.js"
+  },
+  "engines": {
+    "node": ">=13.12.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiddayClouds/venter.git"
+  },
+  "author": "Midday",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MiddayClouds/venter/issues"
+  },
+  "homepage": "https://github.com/MiddayClouds/venter#readme",
+  "dependencies": {
+    "@octokit/rest": "^18.0.12",
+    "better-sqlite3": "^7.1.0",
+    "chalk": "^4.1.0",
+    "chrono-node": "^2.1.10",
+    "discord.js": "^12.5.1",
+    "enmap": "^5.8.2",
+    "eslint": "^7.16.0",
+    "got": "^11.8.1",
+    "inquirer": "^7.3.3",
+    "moment": "^2.29.1",
+    "moment-duration-format": "^2.3.2",
+    "request": "^2.88.2"
   }
 }
