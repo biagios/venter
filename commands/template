@@ -1,0 +1,20 @@
+exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+  // Command here
+
+
+  };
+
+exports.conf = {
+  enabled: true,
+  guildOnly: false,
+  aliases: [],
+  permLevel: "User", // Who can use it
+  cooldown: 5
+};
+
+exports.help = {
+  name: "name of command",
+  category: "Miscelaneous of message",
+  description: "Command description here.",
+  usage: "Write here how you are supposed to use the command. like 'user @user'"
+};

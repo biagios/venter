@@ -1,2 +1,7 @@
 config.json
 .DS_Store
+bans.js
+config.js
+/data/
+node_modules/
+setup.js
