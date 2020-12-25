@@ -4,3 +4,4 @@ bans.js
 config.js
 /data/
 setup.js
+/node_modules/
