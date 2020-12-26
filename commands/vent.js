@@ -1,6 +1,18 @@
 const Discord = require("discord.js");
 const config = require("./../config.js");
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, message, args, level) => {
+  const idGenerator = () => {
+    return Math.floor((1 + Math.random()) * 0x100000)
+      .toString(16)
+      .substring(1);
+  };
+
+  // Create the checkmark emoji.
+  const yesEmoji = client.emojis.cache.get("710291841639252017");
+
+  // Create a random ID.
+  const ventID = idGenerator();
+
   // Require moment for time logging.
   const moment = require("moment");
 
@@ -15,7 +27,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
 
   // If there is no message then let the user know there should be.
   if (!args[0]) {
-    message.channel.send(`Please provide text to send. For example !vent Hello`)
+    message.channel.send("Please provide text to send. For example `!vent Hello`")
   }
 
   // Create the vent message.
@@ -25,6 +37,9 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   // Shift the message along one.
   //ventMessage.shift();
 
+  // Wait one second
+  client.wait(1000);
+
   // Delete the message the user sent.
   message.delete();
 
@@ -32,8 +47,13 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
   ventSender.send(ventMessage + ' - Anonymous')
 
   // Send the message to the webhook that posts it to #vents-log
-  ventRevealer.send("```asciidoc\nTIMESTAMP::" + timestamp +"\nAUTHOR:: " + message.author.tag + " (" + message.author.id + ")\n" + "MESSAGE:: "+ ventMessage +"```")
+  ventRevealer.send("```asciidoc\nTIMESTAMP::" + timestamp +"\nAUTHOR:: " + message.author.tag + " (" + message.author.id + ")\n" + "MESSAGE:: "+ ventMessage + "\nVENT ID:: " + ventID + "```")
 
+  // Create a random ID.
+  const styledVentID = "`"+ventID+"`" ;
+
+  // Let the author know privately it has been sent.
+  message.author.send(`${yesEmoji} | Your message was sucessfully posted. ${styledVentID}`)
 };
 
 exports.conf = {

@@ -15,7 +15,7 @@ module.exports = async (client, message) => {
   // Checks if the bot was mentioned, with no message after it, returns the prefix.
   const prefixMention = new RegExp(`^<@!?${client.user.id}>( |)$`);
   if (message.content.match(prefixMention)) {
-    return message.reply(`the venting command is \`${settings.prefix}vent\`\n Otherwise, if you need help use \`${settings.prefix}help\``);
+    return message.reply(`the command to send vents is \`${settings.prefix}vent\`\n Otherwise, if you need help use \`${settings.prefix}help\``);
   }
 
   // Ignore any message that does not start with our prefix.
@@ -44,7 +44,8 @@ module.exports = async (client, message) => {
   // Output an error if bot is configured to when a user attempts to use a command they should not use.
   if (level < client.levelCache[cmd.conf.permLevel]) {
     if (settings.systemNotice === "true") {
-      return message.channel.send(":no_entry: Error id: 403 | You do not have enough permissions to use this command.");
+      message.delete();
+      return message.author.send(":no_entry: Error id: 403 | You do not have enough permissions to use this command.");
       //This command requires the ${client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel}) permission.`);
       // Your permission level is ${level} (${client.config.permLevels.find(l => l.level === level).name})
     } else {
@@ -55,7 +56,8 @@ module.exports = async (client, message) => {
   // Check if the command has been manually disabled.
   if (cmd.conf.enabled == false) {
     if (settings.systemNotice === "true") {
-      return message.channel.send(":interrobang: Error id: 423 | This command has been disabled.");
+      message.delete();
+      return message.author.send(":interrobang: Error id: 423 | This command has been disabled.");
     } else {
       return;
     }
@@ -98,7 +100,8 @@ module.exports = async (client, message) => {
 
   if (client.bans.users.includes(message.author.id)) {
     if (settings.systemNotice === "true") {
-      return message.channel.send(":interrobang: Error id: 401 | You have been barred from all aspects of the bot.");
+      message.delete();
+      return message.author.send(":interrobang: Error id: 401 | You have been barred from all aspects of the bot.");
     } else {
       return;
     }
