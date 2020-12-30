@@ -65,10 +65,10 @@ exports.run = async (client, message, args, level) => {
   }
 
   // Send the message to the webhook that posts it to #vents
-  ventSender.send(ventMessage + ' - Anonymous')
+  //ventSender.send(ventMessage + ' - Anonymous')
 
   // Send the message to the webhook that posts it to #vents-log
-  ventRevealer.send("```asciidoc\nTIMESTAMP::" + timestamp +"\nAUTHOR:: " + message.author.tag + " (" + message.author.id + ")\n" + "MESSAGE:: "+ ventMessage + "\nVENT ID:: " + ventID + "\nHELPSENT:: " + activeWordsFound + "```")
+  //ventRevealer.send("```asciidoc\nTIMESTAMP::" + timestamp +"\nAUTHOR:: " + message.author.tag + " (" + message.author.id + ")\n" + "MESSAGE:: "+ ventMessage + "\nVENT ID:: " + ventID + "\nHELPSENT:: " + activeWordsFound + "```")
 
   // Create a random ID.
   const styledVentID = "`"+ventID+"`" ;
