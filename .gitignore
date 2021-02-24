@@ -1,6 +1,6 @@
 config.json
 .DS_Store
-bans.js
+
 config.js
 /data/
 setup.js
