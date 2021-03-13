@@ -66,6 +66,11 @@ exports.run = async (client, message, args, level) => {
       }
     }
 
+    if (message.content.includes("@everyone") || message.content.includes("@here")) {
+        ventMessage = ventMessage.replace("@everyone", "everyone")
+        ventMessage = ventMessage.replace("@here", "here")
+    }
+
     // Send the message to the webhook that posts it to #vents
     ventSender.send(ventMessage + ' - Anonymous')
 
