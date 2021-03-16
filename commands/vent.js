@@ -52,7 +52,7 @@ exports.run = async (client, message, args, level) => {
     );
   } else {
     // Create the vent message.
-    const ventMessage = args.join(" ");
+    let ventMessage = args.join(" ");
 
     console.log(args.join(" "));
     // Shift the message along one.
