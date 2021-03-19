@@ -117,7 +117,7 @@ module.exports = async (client, message) => {
 
   if (message.channel.type === "dm") {
     // Log the used command and helpful info.
-    client.logger.cmd(`${cmd.help.name}\nINTERNAL RANK & GUILD:: ${client.config.permLevels.find(l => l.level === level).name} || Direct Message\nUSERNAME:: ${message.author.tag} ()${message.author.id})`);
+    client.logger.cmd(`${cmd.help.name}\nINTERNAL RANK & GUILD:: ${client.config.permLevels.find(l => l.level === level).name} || Direct Message\nUSERNAME:: ${message.author.tag} (${message.author.id})`);
   }
 
   //Only triggers if command is used in a guild in order to not recieve errors when getting guild IDs.
