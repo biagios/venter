@@ -5,3 +5,4 @@ config.js
 /data/
 setup.js
 /node_modules/
+package-lock.json
