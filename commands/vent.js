@@ -44,8 +44,12 @@ exports.run = async (client, message, args, level) => {
 
   // If there is no message then let the user know there should be.
   if (!args[0]) {
-    // Delete the message the user sent.
-    message.delete();
+    // This ignores the Unhandled Rejection if bot attempts to delete author's
+    // messages in DM
+    if (message.channel.type === "text") {
+      // Delete the message the user sent.
+      message.delete();
+    }
     // Tell him
     message.author.send(
       "Please provide text to send. For example `!vent Hello`"
@@ -88,7 +92,18 @@ exports.run = async (client, message, args, level) => {
     }
 
     // Send the message to the webhook that posts it to #vents
-    ventSender.send(ventMessage + " - Anonymous");
+    ventSender.send({
+      "embeds": [
+        {
+          "description": ventMessage,
+          "color": 16711422,
+          "footer": {
+            "text": "Vent ID: " + ventID
+          }
+        }
+      ]
+    })
+    //ventSender.send(ventMessage + " - Anonymous");
 
     // Send the message to the webhook that posts it to #vents-log
     ventRevealer.send(
