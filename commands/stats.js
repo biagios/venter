@@ -29,6 +29,7 @@ exports.run = (client, message, args, level) => { // eslint-disable-line no-unus
     botInfo.addField("\u200B", "\u200B", false);
     botInfo.addField("Memory Usage:", (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2) + "MB", true);
     botInfo.addField("Uptime since restart:", duration, true);
+    botInfo.setFooter("If you want to support Venter financially to cover server costs please donate [here](https://paypal.me/slemea)".)
     message.channel.send(botInfo);
   });
 };

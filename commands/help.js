@@ -5,7 +5,7 @@ exports.run = async (client, message, args, level) => {
   helpInfoEmbed.addField("`!vent`","**Command used to send messages to #vents**\nYou can either use the command in #send-vents or send a DM to the bot.\nCommand usage: `!vent <message>` for example `!vent Hello`",false)
   helpInfoEmbed.addField("\u200B","\u200B",false);
   helpInfoEmbed.addField("`!ping`","**Command used to check the bot's status.**\nCommand usage: `!ping`",false)
-  helpInfoEmbed.setFooter("If you have any more questions or suggestions contact any Staff members.")
+  helpInfoEmbed.setFooter("If you have any more questions or suggestions contact any Staff members.\nIf you want to support Venter financially to cover server costs please donate [here](https://paypal.me/slemea).")
   message.channel.send(helpInfoEmbed)
 };
 
