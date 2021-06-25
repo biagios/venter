@@ -6,7 +6,7 @@ exports.run = async (client, message, args, level) => {
   helpInfoEmbed.addField("\u200B","\u200B",false);
   helpInfoEmbed.addField("`!ping`","**Command used to check the bot's status.**\nCommand usage: `!ping`",false);
   helpInfoEmbed.addField("\u200B","\u200B",false);
-  helpInfoEmbed.addField("If you want to support Venter financially to cover server costs please donate [here](https://paypal.me/slemea).",false);
+  helpInfoEmbed.addField("Donations","If you want to support Venter financially to cover server costs please donate to https://paypal.me/slemea",false);
   helpInfoEmbed.setFooter("If you have any more questions or suggestions contact any Staff members.")
   message.channel.send(helpInfoEmbed)
 };
