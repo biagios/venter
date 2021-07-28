@@ -16,11 +16,11 @@ exports.log = (content, type = "log") => {
     }
     case "warn": {
       console.log(`${timestamp} ${chalk.black.bgYellow(type.toUpperCase())} ${content} `);
-      return logsRevealer.send("```asciidoc\nTIMESTAMP::" + timestamp + "\nWARN:: " + content + "\n```");
+      return logsRevealer.send("BEGIN :warning: ```asciidoc\nTIMESTAMP::" + timestamp + "\nWARN:: " + content + "\n```END :warning:");
     }
     case "error": {
       console.log(`${timestamp} ${chalk.bgRed(type.toUpperCase())} ${content} `);
-      return logsRevealer.send(":sos: ```asciidoc\nTIMESTAMP::" + timestamp + " \nERROR:: " + content + "\n```");
+      return logsRevealer.send("BEGIN :sos: ```asciidoc\nTIMESTAMP::" + timestamp + " \nERROR:: " + content + "\n```END :sos:");
     }
     case "debug": {
       console.log(`${timestamp} ${chalk.green(type.toUpperCase())} ${content} `);
