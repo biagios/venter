@@ -100,7 +100,12 @@ module.exports = async (client, message) => {
 
   if (client.bans.users.includes(message.author.id)) {
     if (settings.systemNotice === "true") {
-      message.delete();
+      // This ignores the Unhandled Rejection if bot attempts to delete author's
+      // messages in DM
+      if (message.channel.type === "text") {
+        // Delete the message the user sent.
+        message.delete();
+      }
       return message.author.send(":interrobang: Error id: 401 | You have been barred from all aspects of the bot.");
     } else {
       return;
