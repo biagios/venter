@@ -24,7 +24,7 @@ exports.conf = {
   enabled: true,
   guildOnly: false,
   aliases: ["tempban","blacklist"],
-  permLevel: "Bot Admin",
+  permLevel: "Bot Support",
   cooldown: 5
 };
 
