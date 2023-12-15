@@ -17,8 +17,8 @@ This project is [MIT](https://github.com/MiddayClouds/venter/blob/master/LICENSE
 
 **Midday (Biagio Santoro, Ben Mills)**
 
-* Website: [@Biagio](https://biagios.github.io) | [@Ben](https://benmills-co.github.io)
-* Twitter: [@Biagio](https://twitter.com/biagiosantori) | [@Ben](https://twitter.com/BenMillsco) | [@Mark](https://twitter.com/Sad_Kris_)
+* Website: [@Biagio](https://biagi.ooo) | [@Ben](https://benmills-co.github.io)
+* Twitter: [@Biagio](https://twitter.com/badgesir) | [@Ben](https://twitter.com/BenMillsco) | [@Mark](https://twitter.com/Sad_Kris_)
 * Github: [@Biagio](https://github.com/biagios) | [@Ben](https://github.com/benmills-co) | [@Mark](https://github.com/sadkris)
 
 <h6 align="center">
