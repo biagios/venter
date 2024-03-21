@@ -3,23 +3,23 @@
 // you.
 if (Number(process.version.slice(1).split(".")[0]) < 16)
   throw new Error(
-      "Node 16.x or higher is required. Update Node on your system.",
+    "Node 16.x or higher is required. Update Node on your system.",
   );
 require("dotenv").config();
 
 // Load up the discord.js library
-const {Client, Collection} = require("discord.js");
+const { Client, Collection } = require("discord.js");
 // We also load the rest of the things we need in this file:
-const {readdirSync} = require("fs");
-const {intents, partials, permLevels} = require("./config.js");
+const { readdirSync } = require("fs");
+const { intents, partials, permLevels } = require("./config.js");
 const logger = require("./modules/logger.js");
 // const bans = require("./bans.js");
-const {load} = require("dotenv");
+const { load } = require("dotenv");
 
 // This is your client. Some people call it `bot`, some people call it `self`,
 // some might call it `cootchie`. Either way, when you see `client.something`,
 // or `bot.something`, this is what we're referring to. Your client.
-const client = new Client({intents, partials});
+const client = new Client({ intents, partials });
 
 // Aliases, commands and slash commands are put in collections where they can be
 // read from, catalogued, listed, etc.
@@ -49,10 +49,9 @@ client.container = {
 const init = async () => {
   // Here we load **commands** into memory, as a collection, so they're
   // accessible here and everywhere else.
-  const commands = readdirSync("./commands/")
-                       .filter(
-                           (file) => file.endsWith(".js"),
-                       );
+  const commands = readdirSync("./commands/").filter((file) =>
+    file.endsWith(".js"),
+  );
   // Log the loading of commands.
   logger.log(`Loading a total of ${commands.length} commands...`);
   const loadedCommands = [];
@@ -61,14 +60,15 @@ const init = async () => {
     // logger.log(`Loading Command: ${props.help.name}. 👌`, "log");
     client.container.commands.set(props.help.name, props);
     loadedCommands.push(props.help.name);
-    props.conf.aliases.forEach(
-        (alias) => { client.container.aliases.set(alias, props.help.name); });
+    props.conf.aliases.forEach((alias) => {
+      client.container.aliases.set(alias, props.help.name);
+    });
   }
   logger.log(`Commands Loaded: ${loadedCommands}`);
 
   // Now we load any **slash** commands you may have in the ./slash directory.
-  const slashFiles = readdirSync("./slash").filter(
-      (file) => file.endsWith(".js"),
+  const slashFiles = readdirSync("./slash").filter((file) =>
+    file.endsWith(".js"),
   );
   logger.log(`Loading a total of ${slashFiles.length} slash commands...`);
   const loadedSlashCommands = [];
@@ -84,10 +84,9 @@ const init = async () => {
   logger.log(`Slash commands Loaded: ${loadedSlashCommands}`);
 
   // Then we load events, which will include our message and ready event.
-  const eventFiles = readdirSync("./events/")
-                         .filter(
-                             (file) => file.endsWith(".js"),
-                         );
+  const eventFiles = readdirSync("./events/").filter((file) =>
+    file.endsWith(".js"),
+  );
   logger.log(`Loading a total of ${eventFiles.length} events...`);
   const loadedEvents = [];
   for (const file of eventFiles) {
