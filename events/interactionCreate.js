@@ -1,15 +1,17 @@
 const logger = require("../modules/logger.js");
-const { getSettings, permlevel } = require("../modules/functions.js");
+const {getSettings, permlevel} = require("../modules/functions.js");
 const config = require("../config.js");
 const bans = require("../bans.js");
 
 module.exports = async (client, interaction) => {
   // If it's not a command, stop.
-  if (!interaction.isCommand()) return;
+  if (!interaction.isCommand())
+    return;
 
-  if (bans.users.includes(interaction.user.id )) {
-    //await interaction.deferReply();
-    await interaction.reply("You have been permanently banned from using the bot.");
+  if (bans.users.includes(interaction.user.id)) {
+    // await interaction.deferReply();
+    await interaction.reply(
+        "You have been permanently banned from using the bot.");
     return;
   }
 
@@ -19,12 +21,13 @@ module.exports = async (client, interaction) => {
 
   // Get the user or member's permission level from the elevation
   const level = permlevel(interaction);
-  
+
   // Grab the command data from the client.container.slashcmds Collection
   const cmd = client.container.slashcmds.get(interaction.commandName);
-  
+
   // If that command doesn't exist, silently exit and do nothing
-  if (!cmd) return;
+  if (!cmd)
+    return;
 
   // Since the permission system from Discord is rather limited in regarding to
   // Slash Commands, we'll just utilise our permission checker.
@@ -32,30 +35,50 @@ module.exports = async (client, interaction) => {
     // Due to the nature of interactions we **must** respond to them otherwise
     // they will error out because we didn't respond to them.
     return await interaction.reply({
-      content: `This command can only be used by ${cmd.conf.permLevel}'s only`,
+      content : `This command can only be used by ${cmd.conf.permLevel}'s only`,
       // This will basically set the ephemeral response to either announce
-      // to everyone, or just the command executioner. But we **HAVE** to 
+      // to everyone, or just the command executioner. But we **HAVE** to
       // respond.
-      ephemeral: settings.systemNotice !== "true"
+      ephemeral : settings.systemNotice !== "true"
     });
   }
 
   // If everything checks out, run the command
   try {
     await cmd.run(client, interaction);
-    logger.log(`${config.permLevels.find(l => l.level === level).name} ${interaction.user.id} ran slash command ${interaction.commandName}`, "cmd");
+    logger.log(
+        `${config.permLevels.find(l => l.level === level).name} ${
+            interaction.user.id} ran slash command ${interaction.commandName}`,
+        "cmd");
 
   } catch (e) {
     console.error(e);
-    if (interaction.replied) 
-      interaction.followUp({ content: `There was a problem with your request.\n\`\`\`${e.message}\`\`\``, ephemeral: true })
-        .catch(e => console.error("An error occurred following up on an error", e));
-    else 
-    if (interaction.deferred)
-      interaction.editReply({ content: `There was a problem with your request.\n\`\`\`${e.message}\`\`\``, ephemeral: true })
-        .catch(e => console.error("An error occurred following up on an error", e));
-    else 
-      interaction.reply({ content: `There was a problem with your request.\n\`\`\`${e.message}\`\`\``, ephemeral: true })
-        .catch(e => console.error("An error occurred replying on an error", e));
+    if (interaction.replied)
+      interaction
+          .followUp({
+            content : `There was a problem with your request.\n\`\`\`${
+                e.message}\`\`\``,
+            ephemeral : true
+          })
+          .catch(e => console.error(
+                     "An error occurred following up on an error", e));
+    else if (interaction.deferred)
+      interaction
+          .editReply({
+            content : `There was a problem with your request.\n\`\`\`${
+                e.message}\`\`\``,
+            ephemeral : true
+          })
+          .catch(e => console.error(
+                     "An error occurred following up on an error", e));
+    else
+      interaction
+          .reply({
+            content : `There was a problem with your request.\n\`\`\`${
+                e.message}\`\`\``,
+            ephemeral : true
+          })
+          .catch(
+              e => console.error("An error occurred replying on an error", e));
   }
 };
