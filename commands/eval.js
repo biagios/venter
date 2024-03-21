@@ -14,13 +14,13 @@
   This is mostly only used by the Eval and Exec commands.
 */
 async function clean(client, text) {
-  if (text && text.constructor.name == "Promise")
-    text = await text;
+  if (text && text.constructor.name == "Promise") text = await text;
   if (typeof text !== "string")
-    text = require("util").inspect(text, {depth : 1});
+    text = require("util").inspect(text, { depth: 1 });
 
-  text = text.replace(/`/g, "`" + String.fromCharCode(8203))
-             .replace(/@/g, "@" + String.fromCharCode(8203));
+  text = text
+    .replace(/`/g, "`" + String.fromCharCode(8203))
+    .replace(/@/g, "@" + String.fromCharCode(8203));
 
   text = text.replaceAll(client.token, "[REDACTED]");
 
@@ -38,15 +38,15 @@ exports.run = async (client, message, args, level) => {
 };
 
 exports.conf = {
-  enabled : false,
-  guildOnly : false,
-  aliases : [],
-  permLevel : "Bot Owner",
+  enabled: false,
+  guildOnly: false,
+  aliases: [],
+  permLevel: "Bot Owner",
 };
 
 exports.help = {
-  name : "eval",
-  category : "System",
-  description : "Evaluates arbitrary javascript.",
-  usage : "eval [...code]",
+  name: "eval",
+  category: "System",
+  description: "Evaluates arbitrary javascript.",
+  usage: "eval [...code]",
 };
