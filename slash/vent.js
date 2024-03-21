@@ -49,7 +49,7 @@ exports.run = async (client, interaction) => {
     .setCustomId("ventBodyInput")
     .setLabel("What's on your mind?")
     .setStyle(TextInputStyle.Paragraph)
-    .setMaxLength(4_000);
+    .setMaxLength(2_000);
 
   // An action row only holds one text input, so you need one action row per
   // text input.
