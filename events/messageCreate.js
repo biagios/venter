@@ -1,5 +1,5 @@
 const logger = require("../modules/logger.js");
-const {getSettings, permlevel} = require("../modules/functions.js");
+const { getSettings, permlevel } = require("../modules/functions.js");
 const config = require("../config.js");
 const bans = require("../bans.js");
 
@@ -9,11 +9,10 @@ const bans = require("../bans.js");
 
 module.exports = async (client, message) => {
   // Grab the container from the client to reduce line length.
-  const {container} = client;
+  const { container } = client;
   // It's good practice to ignore other bots. This also makes your bot ignore
   // itself and not get into a spam loop (we call that "botception").
-  if (message.author.bot)
-    return;
+  if (message.author.bot) return;
 
   if (bans.users.includes(message.author.id)) {
     message.reply("You have been permanently banned from using the bot.");
@@ -35,13 +34,11 @@ module.exports = async (client, message) => {
   // It's also good practice to ignore any and all messages that do not start
   // with our prefix, or a bot mention.
   const prefix = new RegExp(
-                     `^<@!?${client.user.id}> |^\\${settings.prefix}`,
-                     )
-                     .exec(message.content);
+    `^<@!?${client.user.id}> |^\\${settings.prefix}`,
+  ).exec(message.content);
   // This will return and stop the code from continuing if it's missing
   // our prefix (be it mention or from the settings).
-  if (!prefix)
-    return;
+  if (!prefix) return;
 
   // Here we separate our "command" name, and our "arguments" for the command.
   // e.g. if we have the message "+say Is this the real life?" , we'll get the
@@ -58,31 +55,32 @@ module.exports = async (client, message) => {
 
   // Check whether the command, or alias, exist in the collections defined
   // in app.js.
-  const cmd = container.commands.get(command) ||
-              container.commands.get(container.aliases.get(command));
+  const cmd =
+    container.commands.get(command) ||
+    container.commands.get(container.aliases.get(command));
   // using this const varName = thing OR otherThing; is a pretty efficient
   // and clean way to grab one of 2 values!
-  if (!cmd)
-    return;
+  if (!cmd) return;
 
   // Some commands may not be useable in DMs. This check prevents those commands
   // from running and return a friendly error message.
   if (cmd && !message.guild && cmd.conf.guildOnly)
     return message.channel.send(
-        "This command is unavailable via private message. Please run this command in a guild.",
+      "This command is unavailable via private message. Please run this command in a guild.",
     );
 
-  if (!cmd.conf.enabled)
-    return;
+  if (!cmd.conf.enabled) return;
 
   if (level < container.levelCache[cmd.conf.permLevel]) {
     if (settings.systemNotice === "true") {
       return message.channel.send(
-          `You do not have permission to use this command.
+        `You do not have permission to use this command.
 Your permission level is ${level} (${
-              config.permLevels.find((l) => l.level === level).name})
+          config.permLevels.find((l) => l.level === level).name
+        })
 This command requires level ${container.levelCache[cmd.conf.permLevel]} (${
-              cmd.conf.permLevel})`,
+          cmd.conf.permLevel
+        })`,
       );
     } else {
       return;
@@ -102,18 +100,17 @@ This command requires level ${container.levelCache[cmd.conf.permLevel]} (${
   try {
     await cmd.run(client, message, args, level);
     logger.log(
-        `${config.permLevels.find((l) => l.level === level).name} ${
-            message.author.id} ran command ${cmd.help.name}`,
-        "cmd",
+      `${config.permLevels.find((l) => l.level === level).name} ${
+        message.author.id
+      } ran command ${cmd.help.name}`,
+      "cmd",
     );
   } catch (e) {
     console.error(e);
     message.channel
-        .send({
-          content : `There was a problem with your request.\n\`\`\`${
-              e.message}\`\`\``,
-        })
-        .catch((e) =>
-                   console.error("An error occurred replying on an error", e));
+      .send({
+        content: `There was a problem with your request.\n\`\`\`${e.message}\`\`\``,
+      })
+      .catch((e) => console.error("An error occurred replying on an error", e));
   }
 };
