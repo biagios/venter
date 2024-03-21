@@ -1,13 +1,11 @@
 <h1 align="center">Welcome to Venter</h1>
 <p align="center"> A bot used to send private anonymous messages via webhooks to the #vents channel on the <a href="https://discord.com/invite/EBTkQHg">Venter server</a>.</p>
 
-
 <p align="center">This is Venter, a discord bot that runs off <a href="https://github.com/hydrabolt/discord.js/">discord.js</a> and is based off <a href="https://github.com/AnIdiotsGuide/guidebot">GuideBot</a> and <a href="https://github.com/MiddayClouds/pal">Pal</a></p>
 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/MiddayClouds/venter/issues). You can also take a look at the [contributing guide](https://github.com/MiddayClouds/venter/blob/master/CONTRIBUTING.md).
-
 
 ## 📝 License
 
