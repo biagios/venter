@@ -1,3 +1,15 @@
+exports.run = async (client, message, args, level) => {
+  const Discord = require("discord.js");
+  const helpInfoEmbed = new Discord.MessageEmbed();
+  helpInfoEmbed.setTitle("__How to send Vents__")
+  helpInfoEmbed.addField("`!vent`","**Command used to send messages to #vents**\nYou can either use the command in #send-vents or send a DM to the bot.\nCommand usage: `!vent <message>` for example `!vent Hello`",false)
+  helpInfoEmbed.addField("\u200B","\u200B",false);
+  helpInfoEmbed.addField("`!ping`","**Command used to check the bot's status.**\nCommand usage: `!ping`",false);
+  helpInfoEmbed.addField("\u200B","\u200B",false);
+  helpInfoEmbed.addField("Donations","If you want to support Venter financially to cover server costs please donate to https://paypal.me/slemea",false);
+  helpInfoEmbed.setFooter("If you have any more questions or suggestions contact any Staff members.")
+  message.channel.send(helpInfoEmbed)
+};
 /*
 The HELP command is used to display every command's name and description
 to the user, so that he may see what commands are available. The help
