@@ -29,8 +29,8 @@ exports.run = async (client, message, args, level) => {
     client.container.commands.map((cmd) => {
       // the path is relative to the *current folder*, so just ./filename.js
       delete require.cache[require.resolve(`./${cmd.help.name}.js`)];
-      // We also need to delete and reload the command from the container.commands
-      // Enmap
+      // We also need to delete and reload the command from the
+      // container.commands Enmap
       client.container.commands.delete(cmd.help.name);
     }),
   );
