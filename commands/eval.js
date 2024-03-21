@@ -3,7 +3,7 @@
 // can be used to do **anything** on your machine, from stealing information to
 // purging the hard drive. DO NOT LET ANYONE ELSE USE THIS
 
-//const { codeBlock } = require("discord.js");
+// const { codeBlock } = require("discord.js");
 
 /*
   MESSAGE CLEAN FUNCTION
@@ -14,10 +14,9 @@
   This is mostly only used by the Eval and Exec commands.
 */
 async function clean(client, text) {
-  if (text && text.constructor.name == "Promise")
-    text = await text;
+  if (text && text.constructor.name == "Promise") text = await text;
   if (typeof text !== "string")
-    text = require("util").inspect(text, {depth: 1});
+    text = require("util").inspect(text, { depth: 1 });
 
   text = text
     .replace(/`/g, "`" + String.fromCharCode(8203))
@@ -30,7 +29,8 @@ async function clean(client, text) {
 
 // However it's, like, super ultra useful for troubleshooting and doing stuff
 // you don't want to put in a command.
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, message, args, level) => {
+  // eslint-disable-line no-unused-vars
   const code = args.join(" ");
   const evaled = eval(code);
   const cleaned = await clean(client, evaled);
@@ -41,12 +41,12 @@ exports.conf = {
   enabled: false,
   guildOnly: false,
   aliases: [],
-  permLevel: "Bot Owner"
+  permLevel: "Bot Owner",
 };
 
 exports.help = {
   name: "eval",
   category: "System",
   description: "Evaluates arbitrary javascript.",
-  usage: "eval [...code]"
+  usage: "eval [...code]",
 };
