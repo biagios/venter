@@ -87,7 +87,9 @@ exports.run = async (client, interaction) => {
         const ventBody = interaction.fields.getTextInputValue("ventBodyInput");
 
         // Defer the reply to show the bot has recieved the command
-        await interaction.deferReply();
+        await interaction.deferReply({
+          ephemeral: true
+       });
 
         // Send initial reply showing that the vent is procesing
         await interaction.editReply({
