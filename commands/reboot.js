@@ -1,5 +1,6 @@
 const config = require("../config.js");
-const { settings, ActivityType } = require("../modules/settings.js");
+const { settings } = require("../modules/settings.js");
+const { ActivityType } = require("discord.js");
 exports.run = async (client, message, args, level) => {
   // eslint-disable-line no-unused-vars
   const replying = settings.ensure(
