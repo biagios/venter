@@ -5,7 +5,7 @@ const { red, magenta, gray, yellow, white, green } = require("colorette");
 // const { Timestamp } = require("@sapphire/time-utilities");
 const moment = require("moment");
 const { WebhookClient } = require("discord.js");
-const config = require("./../config.js");
+const config = require("../config.js");
 
 exports.log = (content, type = "log") => {
   const logsRevealer = new WebhookClient({
