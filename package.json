@@ -1,6 +1,6 @@
 {
   "name": "venter",
-  "version": "2.0.0",
+  "version": "2.5.0",
   "description": "A bot used to send private anonymous messages via webhooks to the #vents channel on the Venter server.",
   "main": "index.js",
   "scripts": {
