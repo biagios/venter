@@ -29,7 +29,7 @@ exports.run = async (client, interaction) => {
       .substring(1);
   };
 
-  // Variable to check wether words that require intervention are found
+  // Variable to check whether words that require intervention are found
   let activeWordsFound = false;
 
   // Create the modal
@@ -43,13 +43,16 @@ exports.run = async (client, interaction) => {
     .setCustomId("ventTitleInput")
     .setMaxLength(256)
     .setLabel("What do you want to title your vent?")
-    .setStyle(TextInputStyle.Short);
+    .setStyle(TextInputStyle.Short)
+    .setRequired(false);
 
   const ventBodyInput = new TextInputBuilder()
     .setCustomId("ventBodyInput")
     .setLabel("What's on your mind?")
     .setStyle(TextInputStyle.Paragraph)
-    .setMaxLength(2_000);
+    .setMaxLength(4_000)
+    .setRequired(true);
+
 
   // An action row only holds one text input, so you need one action row per
   // text input.
@@ -91,7 +94,7 @@ exports.run = async (client, interaction) => {
           ephemeral: true
        });
 
-        // Send initial reply showing that the vent is procesing
+        // Send initial reply showing that the vent is processing
         await interaction.editReply({
           embeds: [
             {
@@ -110,10 +113,15 @@ exports.run = async (client, interaction) => {
         await wait(1000);
 
         // Check if a support message should be sent
+        const activeWords = ["suicide", "suicidal", "kill", "cutting", "end my life", "harm myself", "hurt myself", "self-harm", "hang", "jump", "overdose", "noose", "rope", "gun", "bullet", "knife", "blade", "razor", "pills", "meds", "medication"];
+        const messageScan = interaction.fields.getTextInputValue("ventBodyInput");
+        const atLeastOneWord = activeWords.some(i => messageScan.includes(i));
         if (
-          interaction.fields
-            .getTextInputValue("ventBodyInput")
-            .includes("suicid")
+          atLeastOneWord == true
+          //interaction.fields
+        //.getTextInputValue("ventBodyInput")
+            
+        //.includes(activeWords)
         ) {
           // Redefine the message body to a helpful message
           replyText =
