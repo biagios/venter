@@ -53,6 +53,7 @@ exports.run = async (client, interaction) => {
     .setMaxLength(4_000)
     .setRequired(true);
 
+
   // An action row only holds one text input, so you need one action row per
   // text input.
   const firstActionRow = new ActionRowBuilder().addComponents(ventTitleInput);
@@ -88,8 +89,10 @@ exports.run = async (client, interaction) => {
         // Get the body entered by the user
         const ventBody = interaction.fields.getTextInputValue("ventBodyInput");
 
-        // Defer the reply to show the bot has received the command
-        await interaction.deferReply();
+        // Defer the reply to show the bot has recieved the command
+        await interaction.deferReply({
+          ephemeral: true
+       });
 
         // Send initial reply showing that the vent is processing
         await interaction.editReply({
