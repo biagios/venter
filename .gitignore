@@ -72,3 +72,4 @@ yarn.lock
 bans.js
 
 guidebot.code-workspace
+.DS_Store
