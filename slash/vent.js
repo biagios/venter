@@ -9,7 +9,8 @@ const {
 const moment = require("moment");
 const config = require("./../config.js");
 const wait = require("util").promisify(setTimeout);
-// Create the webhook that publishes the vents.
+const { settings } = require("../modules/settings.js");
+// Create the public webhook that publishes the vents.
 const ventClient = new WebhookClient({
   id: config.venterhook[0],
   token: config.venterhook[1],
@@ -32,6 +33,9 @@ exports.run = async (client, interaction) => {
   // Variable to check whether words that require intervention are found
   let activeWordsFound = false;
 
+  // Variable to check whether the server sent a private vent too
+  let privateServerSent = false;
+
   // Create the modal
   const modal = new ModalBuilder()
     .setCustomId("myVent")
@@ -42,7 +46,7 @@ exports.run = async (client, interaction) => {
   const ventTitleInput = new TextInputBuilder()
     .setCustomId("ventTitleInput")
     .setMaxLength(256)
-    .setLabel("What do you want to title your vent?")
+    .setLabel("Vent title (Optional)")
     .setStyle(TextInputStyle.Short)
     .setRequired(false);
 
@@ -178,9 +182,28 @@ exports.run = async (client, interaction) => {
           ],
         });
 
+        if (interaction.guild !== null) {
+          const overrides = settings.get(interaction.guild.id);
+          privateServerSent = true;
+          const ventClientPrivate = new WebhookClient({
+            id: overrides["ownVenterHookID"],
+            token: overrides["ownVenterHookTK"],
+          });
+          ventClientPrivate.send({
+            embeds: [
+              {
+                title: ventTitle,
+                description: ventBody,
+                color: 16711422,
+                footer: { text: "Vent ID: " + ventID },
+              },
+            ],
+          });
+        }
+
         // Send the message to the webhook that posts it to #vents-log
         revealClient.send(
-          "```asciidoc\nTIMESTAMP::" +
+          "```asciidoc\nTIMESTAMP:: " +
             timestamp +
             "\nAUTHOR:: " +
             interaction.user.globalName +
@@ -195,6 +218,8 @@ exports.run = async (client, interaction) => {
             ventID +
             "\nHELPSENT:: " +
             activeWordsFound +
+            "\nPRIVATEVENT:: " +
+            privateServerSent +
             "```",
         );
       } catch (error) {
