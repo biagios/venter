@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MiddayClouds/venter.git"
+    "url": "git+https://github.com/biagios/venter.git"
   },
   "author": "Midday",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MiddayClouds/venter/issues"
+    "url": "https://github.com/biagios/venter/issues"
   },
-  "homepage": "https://github.com/MiddayClouds/venter#readme",
+  "homepage": "https://github.com/biagios/venter#readme",
   "dependencies": {
     "@sapphire/time-utilities": "^1.3.8",
     "bufferutil": "^4.0.8",
