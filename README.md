@@ -1,7 +1,7 @@
 <h1 align="center">Welcome to Venter</h1>
 <div align="center">
   <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fbiagios%2Fventer?ref=badge_small" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbiagios%2Fventer.svg?type=small"/></a>
-  <a href="https://codeclimate.com/github/biagios/venter/maintainability"><img src="https://api.codeclimate.com/v1/badges/4573f154d8ff861de21f/maintainability" /></a>
+  <a href="https://qlty.sh/gh/biagios/projects/venter"><img src="https://qlty.sh/gh/biagios/projects/venter/maintainability.svg" alt="Maintainability" /></a>
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/biagios/venter">
 </div>
 <br />
