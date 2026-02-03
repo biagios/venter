@@ -8,74 +8,86 @@ const { WebhookClient } = require("discord.js");
 const config = require("../config.js");
 
 exports.log = (content, type = "log") => {
-  const logsRevealer = new WebhookClient({
-    id: config.logshook[0],
-    token: config.logshook[1],
-  });
-  const timestamp = ` ${moment().format("DD/MM/YYYY")} | ${moment().format("HH:mm:ss (Z)")}`;
+	const logsRevealer = new WebhookClient({
+		id: config.logshook[0],
+		token: config.logshook[1],
+	});
+	const timestamp = ` ${moment().format("DD/MM/YYYY")} | ${moment().format("HH:mm:ss (Z)")}`;
 
-  switch (type) {
-    case "log": {
-      console.log(`${timestamp} ${gray(type.toUpperCase())} ${content} `);
-      return logsRevealer.send(
-        "```asciidoc\nTIMESTAMP::" + timestamp + "\nLOG:: " + content + "\n```",
-      );
-    }
-    case "warn": {
-      console.log(`${timestamp} ${yellow(type.toUpperCase())} ${content} `);
-      return logsRevealer.send(
-        "BEGIN :warning: ```asciidoc\nTIMESTAMP::" +
-          timestamp +
-          "\nWARN:: " +
-          content +
-          "\n```END :warning:",
-      );
-    }
-    case "error": {
-      console.log(`${timestamp} ${red(type.toUpperCase())} ${content} `);
-      return logsRevealer.send(
-        "BEGIN :sos: ```asciidoc\nTIMESTAMP::" +
-          timestamp +
-          " \nERROR:: " +
-          content +
-          "\n```END :sos:",
-      );
-    }
-    case "debug": {
-      console.log(`${timestamp} ${magenta(type.toUpperCase())} ${content} `);
-      return logsRevealer.send(
-        "```asciidoc\nTIMESTAMP::" +
-          timestamp +
-          "\nDEBUG:: " +
-          content +
-          "\n```",
-      );
-    }
-    case "cmd": {
-      console.log(`${timestamp} ${white(type.toUpperCase())} ${content}`);
-      return logsRevealer.send(
-        "```asciidoc\nTIMESTAMP::" +
-          timestamp +
-          "\nCOMMAND:: " +
-          content +
-          "\n```",
-      );
-    }
-    case "ready": {
-      console.log(`${timestamp} ${green(type.toUpperCase())} ${content}`);
-      return logsRevealer.send(
-        "```asciidoc\nTIMESTAMP::" +
-          timestamp +
-          "\nREADY:: " +
-          content +
-          "\n```",
-      );
-    }
-    default:
-      throw new TypeError(
-        "Logger type must be either warn, debug, log, ready, cmd or error.",
-      );
-  }
+	switch (type) {
+		case "log": {
+			console.log(`${timestamp} ${gray(type.toUpperCase())} ${content} `);
+			return logsRevealer.send(
+				"```asciidoc\nTIMESTAMP::" + timestamp + "\nLOG:: " + content + "\n```",
+			);
+		}
+		case "warn": {
+			console.log(`${timestamp} ${yellow(type.toUpperCase())} ${content} `);
+			return logsRevealer.send(
+				"BEGIN :warning: ```asciidoc\nTIMESTAMP::" +
+					timestamp +
+					"\nWARN:: " +
+					content +
+					"\n```END :warning:",
+			);
+		}
+		case "error": {
+			// 1. Extract the actual message/stack so it isn't {}
+			const errorOutput =
+				content instanceof Error
+					? content.stack
+					: typeof content === "object"
+						? JSON.stringify(content, null, 2)
+						: content;
+
+			// 2. Log it to the console properly
+			console.log(`${timestamp} ${red(type.toUpperCase())}`);
+			console.log(errorOutput); // This will now show the actual trace
+
+			// 3. Return your log (keeping your existing webhook logic)
+			return logsRevealer.send(
+				"BEGIN :sos: ```asciidoc\nTIMESTAMP::" +
+					timestamp +
+					" \nERROR:: " +
+					String(errorOutput).substring(0, 1800) + // Discord char limit protection
+					"\n```END :sos:",
+			);
+		}
+		case "debug": {
+			console.log(`${timestamp} ${magenta(type.toUpperCase())} ${content} `);
+			return logsRevealer.send(
+				"```asciidoc\nTIMESTAMP::" +
+					timestamp +
+					"\nDEBUG:: " +
+					content +
+					"\n```",
+			);
+		}
+		case "cmd": {
+			console.log(`${timestamp} ${white(type.toUpperCase())} ${content}`);
+			return logsRevealer.send(
+				"```asciidoc\nTIMESTAMP::" +
+					timestamp +
+					"\nCOMMAND:: " +
+					content +
+					"\n```",
+			);
+		}
+		case "ready": {
+			console.log(`${timestamp} ${green(type.toUpperCase())} ${content}`);
+			return logsRevealer.send(
+				"```asciidoc\nTIMESTAMP::" +
+					timestamp +
+					"\nREADY:: " +
+					content +
+					"\n```",
+			);
+		}
+		default:
+			throw new TypeError(
+				"Logger type must be either warn, debug, log, ready, cmd or error.",
+			);
+	}
 };
 
 exports.error = (...args) => this.log(...args, "error");

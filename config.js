@@ -43,7 +43,7 @@ const config = {
 	 * DO NOT REMOVE THIS BEFORE YOUR BOT IS LOADED AND FUNCTIONAL.
 	 */
 	defaultSettings: {
-		prefix: "cv!",
+		prefix: "v!",
 		modLogChannel: "mod-log",
 		modRole: "Moderator",
 		adminRole: "Administrator",
@@ -161,11 +161,24 @@ const config = {
 			// Another simple check, compares the message author id to a list of owners found in the bot application.
 			check: (message) => {
 				const owner = message.author ?? message.user;
-				return config.owner.includes(process.env.OWNER);
+				return config.owner === process.env.OWNER;
 				//return owner.id === process.env.OWNER;
 			},
 		},
 	],
 };
+if (process.env.ENVIRONMENT === "dev") {
+	config.defaultSettings.prefix = "cv!";
+	config.token = process.env.C_DISCORD_TOKEN;
+	config.venterhook = [
+		process.env.C_VENTER_HOOK_ID,
+		process.env.C_VENTER_HOOK_TOKEN,
+	];
+	config.revealerhook = [
+		process.env.C_REVEALER_HOOK_ID,
+		process.env.C_REVEALER_HOOK_TOKEN,
+	];
+	config.logshook = [process.env.C_LOGS_HOOK_ID, process.env.C_LOGS_HOOK_TOKEN];
+}
 
 module.exports = config;
