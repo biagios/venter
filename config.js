@@ -180,5 +180,4 @@ if (process.env.ENVIRONMENT === "dev") {
 	];
 	config.logshook = [process.env.C_LOGS_HOOK_ID, process.env.C_LOGS_HOOK_TOKEN];
 }
-
 module.exports = config;

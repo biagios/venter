@@ -22,6 +22,7 @@ module.exports = async (client) => {
 	});
 
 	// Debug
+	logger.debug(`ENVIRONMENT: ${process.env.ENVIRONMENT}`);
 	logger.debug(`BOT ID: ${client.user.id}`);
 	logger.debug(`DISCORD.JS VERSION: v${version}`);
 	logger.debug(`NODE.JS VERSION: ${process.version}`);
