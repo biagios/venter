@@ -20,7 +20,7 @@
   "dependencies": {
     "@sapphire/time-utilities": "^1.7.14",
     "colorette": "^2.0.20",
-    "discord.js": "^14.26.2",
+    "discord.js": "^14.26.4",
     "dotenv": "^17.2.3",
     "enmap": "^6.1.6",
     "moment": "^2.30.1"
